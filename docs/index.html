@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <meta name="keywords" content="topology, point set topology, general topology, large scale structure of space-time">
+ <meta name="description" content="Notes on Point-Set Topology.">
+ <meta name="viewport" content="width=device-width"> 
+ <link rel="stylesheet" type="text/css" href="css/stylesheet.css?v=13" media="all"> 
+ <link rel="shortcut icon" href="images/favicon.ico" type="image/vnd.microsoft.icon">
+ <title>Point-Set Topology</title>
+</head>
+
+<body>
+
+<h1>Point-Set Topology</h1>
+Notes on the subject of <b>point-set topology</b>.
+ 
+<P>This project exists in order to help me read 
+<a href='https://archive.org/details/largescalestruct0000hawk/page/n5/mode/2up'><em>The Large Scale Structure of Space-Time</em></a>, by Hawking and Ellis.
+From the first chapter of the book:
+<P><em>"While we expect that most of our readers will have some acquaintance with General Relativity, we have endeavoured to write this book so that it is 
+self-contained apart from requiring a knowledge of simple calculus, algebra, and point set topology."</em>
+
+<P>Because I lack the necessary background in point-set topology, I have created these notes to help me understand the subject. 
+
+<P>References used:
+<ul>
+ <li><em><a href='https://archive.org/details/elementarytopolo0002gemi'>Elementary Topology</a></em>, Michael C. Gemignani, 1972 (2nd ed.)
+ <li><em>A First Course in Topology</em>, R. A. Conover, 1975
+ <li><em>General Relativity</em>, Robert Wald, 1984, Appendix A 
+ <li><em>Topological Spaces - From Distance to Neighborhood</em>, Gerard Buskes and Arnoud van Rooij, 1997
+ <li><a href='https://www.math.toronto.edu/ivan/mat327/index.html'>Course</a> at U of T (2019), by Ivan Khatchatourian
+ <li><a href='https://encyclopediaofmath.org/index.php?title=Special%3ASearch&search=exterior+&button='>Encyclopedia of Math</a>
+ <li>https://www.cs.mcgill.ca/~prakash/Pubs/ams_proc_version.pdf
+ <li>https://www.youtube.com/watch?v=3z2oTCoBHVo
+ <li>Semi-Riemannian Geometry With Applications to Relativity (Pure and Applied Mathematics 103) O'Neill, Barrett 
+</ul>
+
+<P>References for future use:
+<ul>
+ <li>https://www.cs.mcgill.ca/~prakash/Pubs/ams_proc_version.pdf
+ <li>https://www.youtube.com/watch?v=3z2oTCoBHVo
+ <li>Semi-Riemannian Geometry With Applications to Relativity (Pure and Applied Mathematics 103) O'Neill, Barrett, 1983
+ <li>Robert Wald, General Relativity, 1984
+ <li>Roger Penrose, Techniques of Differential Topology in Relativity, 1972 
+</ul>
+
+ <P><b>Warnings:</b>
+  <ul>
+   <li>The jargon used by mathematicians is not universal. Variations exist, and those variations can sometimes be very confusing.
+   <li>It's impossible to take account of all variations in jargon. 
+   <li>Here, <em>function</em> is more specific than a <em>map</em>: a <em>function</em> is a <em>map</em> whose codomain is the real numbers.
+   This is how Hawking and Ellis define map and function. 
+   Some authors treat <em>function</em> as a synonym for <em>map</em>. 
+   <li>The term <em>range</em> is not used here. It has fallen out of fashion, because of its ambiguous use.
+   <li>The term <em>neighbourhood</em> is dangerous because its definition has many variations. Hawking and Ellis use 'neighbourhood', 'coordinate neighbourhood', 
+   'open neigbourhood', 'normal neighbourhood'. Gemignani: he uses 'D-p-neighbourhood' or 'p-neighbourhood' for an open ball. Very confusing!
+   <li>sometimes 'neighbourhood of x' means 'an open set that has x', sometimes it means 'a set that contains an open set that has x'.
+   <li>The terms I use below are of course not exhaustive. Mathematicians define other terms that are not referenced here.
+   <li>In this subject, it's often the case that multiple equivalent definitions of things are possible.
+   <li>The terms T<sub>0</sub>, T<sub>1</sub>, T<sub>2</sub>/Hausdorff have uniform definitions amongst authors. 
+        But there's wide variation in the rest of the separation-terms: T<sub>3</sub>, T<sub>4</sub>, <em>normal</em>, and <em>regular</em>. Confusing!
+  </ul>
+
+<P>Unicode symbols used here (for reference, and for my own copy-paste operations):
+<ul>
+ <li> ∅ 
+ <li> ⊂
+ <li> ⊃ 
+ <li> ⋂
+ <li> ∪
+ <li> ∈ 
+ <li> ≃
+ <li> &le;
+ <li> &ne;
+ <li> ➔
+ <li> δ
+ <li> ε
+ <li> ∞
+ <li> Ā
+ <li> A&deg; or ⟨A⟩
+ <li> ∂A
+ <li> &times;
+</ul>
+
+Simple-minded counts of terms appearing in <em>The Large-Scale Structure of Space-Time</em>:
+<ul>
+ <li>metric: 345
+ <li>topology: 64
+ <li>compact: 144 (includes non-compact)
+ <li>non-compact: 23 
+ <li>paracompact: 10 
+ <li>compactness: 3
+ <li>continuous: 72
+ <li>continuity: 8
+ <li>Hausdorff: 26
+ <li>connected: 51
+ <li>simply connected: 11
+ <li>open set: 45 
+ <li>closed set: 10
+ <li>homeomorphism: 6 
+ <li>homeomorphic: 21 
+ <li>cover: 21
+ <li>basis: 109 (various meanings)
+ <li>sub-basis: 2 
+ <li>neighbourhood: 111 (meaning?) 
+ <li>normal neighbourhood: 13 (defined p34) 
+ <li>coordinate neighbourhood: 18
+ <li>open neighbourhood: 15  
+ <li>convex normal: 22  
+ <li>closure: 35 
+ <li>identify: 21 
+ <li>identification: 4
+ <li>Lipschitz: 8
+ <li>injective: 6
+ <li>surjective: 4
+ <li>bijective: 0
+ <li>quotient space: 1
+ <li>product space: 0
+ <li>Cauchy sequence: 1
+ <li>ultranet: 0
+ <li>ultrafilter: 0 
+ <li>filter: 0
+ <li>net: 0
+ <li>homotopy: 0 
+ <li>homotopic: 3
+ <li>open cover: 0
+ <li>uniform continuity: 0
+ <li>uniform convergence: 0
+ <li>Hausdorff dimension: 0
+ <li>retract: 0
+</ul> 
+ 
+
+<P>Remarks:
+ <ul>
+ <li>For many books, the approach is to generalize aspects of metric spaces into aspects of topological spaces.
+ <li>Classical physics needs continuity on space and time. 
+    It's important that continuity is expressible using the open sets of chosen topologies. 
+    That is, continuity depends on the chosen topologies.
+    Note as well that defining continuity with open sets differs in character from defining with epsilons and whatnot. 
+    At the level of open sets, the language takes on a 'non-local' character.
+ <li>homeomorphic map: both the map and its inverse exist (bijective), and both are continuous: they preserve topological properties.
+ <li>the subset topology is important for physics, where you restrict a topological space to a subset, and use intersections with open sets. 
+   When a continuous map is restricted to some part of the domain, the restricted map is still continuous.    
+</ul>
+
+<P>It's important to clearly understand the relation between metric spaces and topological spaces:
+<ul>
+ <li>every metric space is a topological space
+ <li>more specifically, <b>every metric space is a paracompact Hausdorff topological space</b>
+ <li>a metric induces a topology 
+ <li>different metrics may or may not induce the same topology
+ <li>it's always possible to add a metric to a topological space; but adding a metric can change the topology!
+ <li><b>metrizable</b>: a topological space is metrizable only if a metric can be added to it without changing the topology
+ <li><b>a metric space has a notion of distance, while a topological space only has a notion of closeness</b>
+</ul>
+
+<P>Properties of topological spaces are unchanged by homeomorphic maps:
+<ul>
+ <li>convergence
+ <li>compactness
+ <li>continuity
+ <li>connectedness
+ <li>dimension
+</ul>
+
+<P>Properties of metric spaces:
+<ul>
+ <li>completeness
+ <li>uniform continuity
+ <li>uniform convergence
+ <li>Hausdorff dimension
+</ul> 
+
+<P>Quotes from <em>A First Course in Topology</em>, R. A. Conover, 1975.
+
+<P><em>For example, there is a continuous function from the knot (A) below onto the circle (B), even though the knot must be torn, untwisted, and then repaired to
+transfrom it onto the circle. The important thing for such a function to be continuous is that the cut made in the knot is repaired before the function
+is finished.</em> [Not just 'rubber sheet' transformations, but cuts/identifications as well.]
+
+<P><em>...sequence can converge to more than one point...</em> [In some cases.]
+
+<P><em>Closed sets are just as important in topology as open sets are.</em>
+
+<P><em>Thus a function is continuous if and only if its inverse preserves closed sets, and a function is continuous if and only if it preserves open sets.
+Both of these statements rank among the most important in point-set topology. Sometimes one of them is easier to use than the other, and you should 
+remember them both.</em>
+
+
+<P>A breakdown of the logical hierarchy (with synonyms in square brackets):
+<P><b>Sets</b>
+<ul>
+  <li>empty set
+  <li>cardinality
+    <ul>
+     <li>countable
+     <li>uncountable
+    </ul>
+  <li>subset
+    <ul>
+      <li>equality
+      <li>power set
+      <li>partition
+    </ul>
+  <li>complement
+  <li>index set
+  <li>intersection
+     <ul><li>disjoint</ul>
+  <li>union
+  <li>Cartesian product
+</ul>
+    
+    
+<P><b>Relation -> Map -> Function</b>
+<ul>
+  <li>relation [binary relation]
+   <ul>
+     <li>inverse relation 
+     <li>partial ordering [poset]
+       <ul>
+         <li>induced ordering
+         <li>upper bound
+         <li>lower bound
+         <li>greatest lower bound [glb] [inf] [infinum]
+         <li>least upper bound [lub] [sup] [supremum]
+       </ul>
+     <li>total ordering
+       <ul>
+         <li>chain
+       </ul>       
+     <li>equivalence relation
+		 <li>map [mapping]
+		   <ul>
+		     <li>domain
+		     <li>codomain
+		     <li>image
+		     <li>preimage [inverse image]
+		     <li>onto [surjective]
+		     <li>one-one [injective]
+		     <li>one-to-one correspondence [bijective] [invertible]
+		       <ul><li>inverse</ul>
+		     <li>restriction
+		     <li>composition
+		     <li>kinds of map
+		       <ul>
+		         <li>function
+             <li>sequence
+             <li>index
+             <li>identity
+           </ul>
+         <li>axiom of choice
+		    </ul>
+   </ul>
+</ul>
+
+<P><b>Metric Space</b>
+<ul>
+ <li>metric function
+ <li>metric space
+ <li>induced metric
+ <li>diameter
+ <li>distance
+ <li>open/closed ball [neighbourhood]
+ <li>open/closed set
+ <li>sequence: convergence to a limit
+</ul>
+
+<P><b>Topological Space</b>
+<ul>
+ <li>topology and topological space
+ <li>open subsets
+    <ul>
+     <li>topological properties
+     <li>closed subsets
+     <li>neighbourhoods
+     <li>open and closed maps
+    </ul>
+ <li>example topologies
+ <li>smaller [weaker, coarser] versus larger [stronger, finer]
+ <li>continuity
+    <ul>
+     <li>using open sets
+     <li>using closed sets
+     <li>using a basis in Y
+     <li>using a closures
+    </ul>
+  <li>homeomorphism
+    <ul><li>topological invariant</ul>
+  <li>basis 
+    <ul>
+     <li>sub-basis
+     <li>local basis
+      <ul><li>first-countable</ul>
+     <li>second-countable
+    </ul>
+  <li>derived sets
+    <ul>
+		  <li>closure
+		    <ul><li>dense</ul>
+		  <li>interior
+		  <li>exterior
+		  <li>boundary [frontier]
+		</ul>
+  <li>subspace
+    <ul>
+      <li>subspace topology [relative topology]
+    </ul>
+  <li>quotient space
+    <ul>
+      <li>identification map [projection map]
+      <li>identification topology [quotient topology] 
+    </ul>
+  <li>product space
+    <ul>
+      <li>product topology  
+      <li>strips
+    </ul>
+  <li>separation axioms
+    <ul>
+      <li>T<sub>0</sub> [Kolmogorov]
+      <li>T<sub>1</sub> [Fréchet]
+      <li>T<sub>2</sub> [Hausdorff] [separated space]
+      <li>regular
+      <li>T<sub>3</sub>
+    </ul>
+  <li>compact
+    <ul>
+      <li>(open) cover
+      <li>sub-cover
+      <li>Lindelof
+      <li>Heine-Borel theorem
+      <li>Tychonoff theorem
+      <li>Bolzano-Weierstrass theorem
+      <li>paracompact
+        <ul>
+         <li>refinement
+         <li>locally finite
+        </ul>
+    </ul>
+  <li>connected  
+  <li>convex  
+</ul>
+
+<P>Topological terms used in Appendix A of Robert Wald's <em>General Relativity</em>:
+<ul>
+ <li>induced topology on a subset of X
+ <li>product space: all open sets are unions of U<sub>1</sub> &times; U<sub>2</sub>, where the U's are open sets in the factors
+ <li>mentioned quickly: continuous, homeomorphism, connected, closure, boundary, Hausdorff 
+ <li>compactness: he has a <em>lot</em> to say about this 
+ <li>open cover, sub-cover
+ <li>convergence of sequences: limit, accumulation point, first-countable, second-countable
+ <li>Bolzano-Weierstrauss theorem
+ <li>paracompactness: refinement, locally finite
+ <li>partition of unity (allows local results to be elegantly globalized)
+ <li>page 191, neighbourhood: he uses it to mean 'an open set that contains a point'
+ <li>page 191, convex normal neighbourhood is defined
+</ul>
+ 
+<P>Some of the terms related to topology used (?) by Hawking and Ellis (not an exhaustive list):
+<ul>
+ <li>Hausdorff
+ <li>connected
+ <li>compact
+ <li>paracompact
+ <li>map
+ <li>function
+ <li>boundary
+ <li>metric
+ <li>identify
+ <li>open set
+ <li>closed set
+ <li>C<sup>r</sup>
+ <li>continuous
+ <li>locally Lipschitz
+ <li>restriction
+ <li>cover
+ <li>homeomorphism
+ <li>countable basis
+ <li>partition of unity
+ <li>continuity
+ <li>subsequence
+ <li>neighbourhood
+ <li>bases
+ <li>limit point
+ <li>Cauchy sequence
+ <li>quotient space
+ <li>closure 
+ <li>interior
+</ul>
+
+
+<P>The <b>empty set</b> ∅:
+<ul> 
+ <li>contains nothing. 
+ <li>is a subset of every set. 
+ <li>is used by fundamental math to <a href='https://en.wikipedia.org/wiki/Ordinal_number#Von_Neumann_definition_of_ordinals'>build up structure</a> 'out of nothing' (<b>strange!</b>)
+ <li>has {∅}  as its power set.
+</ul>
+
+<P>In any topological space, the empty set ∅: 
+<ul> 
+ <li>is both open and closed
+ <li>is compact (because it's finite) 
+ <li>has the empty set as its closure
+</ul>
+
+
+<P>The <b>cardinality</b> of a set S: 
+<ul> 
+ <li> is the number of items in the set.
+ <li> is denoted |S|.
+ <li> is determined by a one-to-one correspondence with another set.
+</ul>
+
+<P>The cardinality of the natural numbers N = {0,1,2,...} is used to categorize the cardinality of a set:
+<ul> 
+ <li> a set S is <b>countable</b> iff |S| &le; |N|; otherwise it's <b>uncountable</b>.
+ <li> if the equality applies, then S is <b>countably infinite</b>.
+</ul>
+
+Countable:
+<ul> 
+ <li> integers
+ <li>even integers
+ <li>rational numbers
+ <li>algebraic numbers (root of a polynomial with integer coefficients).
+ <li>an infinite subset of a countable set  
+ <li>the Cartesian product of two countable sets
+ <li>the union of finitely many countable sets  
+</ul>
+
+Uncountable:
+<ul>
+ <li> transcendentals (non-algebraics)
+ <li> irrationals
+ <li> reals
+ <li> complex numbers
+ <li> the set of infinite sequences of 1s and 0s
+ <li> a superset of an uncountable set 
+ <li> the power set of an infinite set, e.g. P(N)
+ <li> the set of functions from N to N
+</ul>
+
+Between any two distinct real numbers:
+<ul>
+ <li> there are infinitely many rational numbers
+ <li> there are infinitely many irrational numbers
+</ul>
+
+<P>The cardinality of a power set is an important idea:
+<ul>
+ <li> |P(S)| is always bigger than |S|
+ <li> in general, there's no <em>onto</em> function from S to P(S). 
+ <li> |P(N)| = |R| is an interesting fact (N is natural numbers, R is reals).
+ <li> taking successive power sets gets you bigger and bigger cardinality.
+ <li> the <b>continuum hypothesis</b> states that there are no numbers between |N| and |R|.
+</ul>
+
+<P><b>Strange</b>: The cardinality of a line segment matches the cardinality of: 
+<ul>
+ <li> an infinite line
+ <li> the entire plane
+ <li> any R<sup>n</sup> space!
+</ul>
+
+<P><b>Subset</b>: 
+<ul>
+ <li>variations in the symbol used, ⊂ versus ⊆.  I prefer ⊂.
+ <li>variations: some use the idea of a <em>proper</em> subset, while others simply ignore the distinction.
+ <li><b>equal sets</b>: A = B iff A ⊂ B and B ⊂ A.
+ <li>the <b>power set</b> P(A) of A is the set of all subsets of A. If A has n items, then P(A) has 2<sup>n</sup> items.
+ <li>a <b>partition</b> of A is a set of subsets of A, which divide up the contents of A among themselves, without duplicating any item.
+</ul> 
+
+<P>The <b>complement</b> of B in A is A - B: the items in A that aren't in B.
+
+<P>The <b>intersection</b> of multiple sets {S<sub>i</sub>} can be written using the integers as an <b>index set</b>: 
+<ul>
+  <li>⋂{S<sub>i</sub>|i ∈ I}
+  <li>⋂<sub>I</sub>S<sub>i</sub>
+  <li>other variations exist
+</ul>
+Sets are <b>disjoint</b> if their intersection is empty.
+
+<P>The <b>union</b> of multiple sets {S<sub>i</sub>} can be written as: 
+<ul>
+  <li>∪{S<sub>i</sub>|i ∈ I}
+  <li>∪<sub>I</sub>S<sub>i</sub>
+  <li>other variations exist
+</ul>
+
+<P>The <b>Cartesian product</b> of two sets A and B  
+<ul>
+  <li>is denoted A x B.
+  <li>consists of the set of all <em>ordered pairs</em> (a,b) of items from A and B.
+  <li>note that the items in A x B are ordered pairs, and are not the same type of object as the items in A and B.
+</ul>
+
+<P>A <b>relation</b> R between A and B:
+<ul>
+ <li>is a subset of their Cartesian product: R ⊂ A x B.
+ <li>defines a "direction", from A to B, with no other structure.
+ <li>if (a,b) is an ordered pair in R, then we can write <em>aRb</em>, or say that a and b are R-related.
+ <li>always has an <b>inverse relation</b>: all of the (b,a) pairs corresponding to each (a,b) pair.
+ <li>the set B can be the same as the set A (a relation on A).
+</ul>
+
+<P>A <b>partial ordering</b> on set S is a relation on S.
+<ul>
+ <li>each ordered pair (a,b) in the relation has a &le; b.
+ <li>symbolically, you can think of a &le; b as standing in for (a,b).
+ <li>the &le; sign is treated generically: it can refer to <em>numeric comparisons</em> or to <em>taking a subset</em> (and maybe other operations?).
+ <li>not every pair of items is necessarily comparable.
+</ul>
+
+<P>A partial ordering satisfies these rules that apply to real numbers R, and are taken as a prototype:
+<ul>
+ <li>x &le; x, for all x ∈ R
+ <li>(x &le; y and y &le; x) implies x = y, for any x,y ∈ R
+ <li>(x &le; y and y &le; z) implies x &le; z, for any x,y,z ∈ R
+</ul>
+
+<P>For any set S, the ⊂ operation defines a partial ordering on its power set P(S).
+
+<P>A partially ordered set S,&le; allows for possible upper and lower bounds on the items in W ⊂ S.
+<ul>
+ <li>the <b>upper/lower bound</b> is in S (not necessarily W).
+ <li>not every subset W of a partially ordered set will have an upper or lower bound.
+ <li>for example, the open interval (0,1) has no upper or lower bounds.
+ <li>W is a <b>chain</b> if W is totally ordered by the ordering induced on it by S.
+</ul>
+ 
+<P>Related ideas:
+<ul>
+ <li><b>greatest lower bound</b> [glb, infinum, inf].
+ <li><b>least upper bound</b> [lub, supremum, sup].
+ <li>again, these items are in S, not necessarily in W ⊂ S.
+ <li>if S is the reals: if a lower (upper) bound exists, then there is a glb (lub).
+</ul>
+
+<P>A <b>total ordering</b> is simply an ordering that is applicable to all items in the given set.
+Given a partially ordered set S,&le; and a subset W ⊂ S:
+<ul>
+ <li>W is a <b>chain</b> if W is totally ordered by the ordering induced on it by S.
+</ul>
+
+<P>An <b>equivalence relation</b> E on a set S is a relation on S:
+<ul>
+ <li>numeric equality = is taken as its prototype (just as &le; is the prototype for partial ordering relations).
+ <li>each ordered pair (a,b) in the relation has a E b.
+ <li>symbolically, you can think of a E b as standing in for (a,b).
+</ul>
+ 
+<P>An equivalence relation E on a set S satisfies these rules (similar to partial ordering, except for the second rule):
+<ul>
+ <li>sEs, for all s ∈ S
+ <li>if sEs', then s'Es
+ <li>if sEs' and s'Es'', then sEs''
+</ul>
+
+<P>Partitions and equivalence relations are closely related.
+An equivalence relation on S can be used to <em>induce a partition</em> on S, where each set in the partition contains equivalent items.
+Conversely, given any partition of S, you can define an equivalence relation E such that E induces the given partition. 
+ 
+<P>For a set S, the set of items equivalent to s is called the <b>E-equivalence class</b> of s (under the given equivalence relation E).
+This is often abbreviated to simply <b>equivalence class</b>.
+ 
+<P>A <b>map</b> m: A ➔ B is a relation in which every <em>a</em> appears exactly once:
+<ul>
+ <li>A is called the <b>domain</b>.
+ <li>B is called the <b>codomain</b> [sometimes range].
+ <li>the map <em>m</em> is said to be a map <b>into</b> the codomain (as opposed to <em>onto</em> - see below).
+ <li>a map always uses all of its domain set (no left-vees), but not necessarily all of its codomain set (possible right-vees).
+ <li>for each pair <em>(a, b)</em>, <em>b</em> is called the <b>image</b> of <em>a</em>, and <em>a</em> is called the <b>preimage</b> of <em>b</em>.
+ <li>the image of the map <em>m(A)</em> is the set of all <em>b</em>'s involved in the relation.
+ <li><b>onto [surjective]</b>: the image of the map <em>m</em> is the entire codomain, m(S) = T.
+ <li><b>one-to-one [injective]</b>: no right-vees, <em>b</em>'s aren't repeated in the relation.
+ <li><b>one-to-one correspondence [bijective]</b>: both onto and one-to-one.
+</ul>
+
+<P>A one-to-one correspondence is always <b>invertible</b>, and vice versa. 
+
+<P>In physics, I think most maps are invertible.
+
+<P>The inverse <em>relation</em> m<sup>-1</sup> always exists; the inverse <em>map</em> m<sup>-1</sup> exists only if it is a one-to-one correspondence.
+
+<P>A map can be <b>restricted</b> to a subset of the domain, to produce a slightly different map: 
+<ul>
+ <li>m: A ➔ B
+ <li>subset of the domain W ⊂ A
+ <li>(m|W) is the restriction of m to the subset W: (m|W): W ➔ B
+ <li>sometimes it's written without the parens: m|W.
+</ul>
+ 
+<P>Two (or more) maps can be chained together to make a <b>composite map</b>, if the codomain of one map is the domain of another:
+<ul>
+ <li>p: A ➔ B
+ <li>q: B ➔ C
+ <li>(q ∘ p) : A ➔ C
+</ul>
+
+<P>Names for different kinds of maps: 
+<ul>
+ <li>a <b>function</b> m: A ➔ R has the codomain as the reals R.
+ <li>a <b>sequence</b> m: N ➔ B has the domain {1,2,3,...}.
+ <li>an <b>index</b> m: I ➔ B uses its domain I (the index set) to label the items in a set B.
+ <li>the <b>identity map</b> <em>id</em> : X ➔ X simply maps its input to itself: input equals output.
+</ul>
+ 
+ <P>The <b>axiom of choice</b> means that, given some family of sets, you can create a new set by <em>choosing one (and only one) item from each set</em>.
+ It's an axiom, so it's an unproven assumption.
+ This can be stated using a map, like so: 
+<ul>
+ <li>given {S<sub>i</sub>}, i ∈ I is a family of non-empty sets. 
+ <li> there is a map m: I ➔ ∪<sub>I</sub> S<sub>i</sub>, such that m(i) ∈ S<sub>i</sub> for each i.   
+</ul>
+<P>There are several equivalent formulations of the axiom of choice. 
+
+
+<P>A <b>metric</b> D: X x X ➔ R is a generalized distance function defined on a set X, which has: 
+<ul>
+ <li>D(x,y) &ge; 0 
+ <li>D(x,y) = 0 iff x = y
+ <li>D(x,y) = D(y,x)
+ <li>D(x,z) &le; D(x,y) + D(y,z) the triangle inequality
+</ul>
+
+<P>A <b>metric space</b> X,D is a set X together with a chosen metric on X. 
+A subset of X will also be a metric space, with an <b>induced metric</b>.  
+
+<P>A metric can be defined on various kinds of things:
+<ul>
+ <li>numbers
+ <li>functions
+ <li>sequences
+ <li>...other...
+</ul>
+
+<P>Examples of the interpretation of the return value of a metric:
+<ul>
+ <li>a distance
+ <li>an angle
+ <li>Hamming distance between two strings of the same length (number of characters that need to be changed)
+ <li>...other...
+</ul>
+
+<P>Examples of a metric:
+<ul>
+ <li>the <b>discrete metric</b> [trivial metric]: D(x,y) = 1 iff x &ne; y; D(x,x) = 0. Can be used with any set X.
+ <li>the <b>Euclidean metric</b> on R<sup>n</sup>
+ <li>the <b>absolute value metric</b> on R: for the reals, the Euclidean metric can be restated as |x - y|
+ <li>the <b>taxicab metric</b> on R<sup>2</sup>: |x2 - x1| + |y2 - y1|
+ <li>a vector space with a norm ||v||, is a metric space with ||x - y|| as the metric
+</ul>
+
+<P>The <b>diameter d(A)</b> of a subset of a metric space X is defined like this:
+<ul>
+ <li>X,D is a metric space.
+ <li>A ⊂  X. 
+ <li>the diameter d(A) of A is the least upper bound (max) of all possible distances between points in A. 
+ <li>that is, d(A) = lub {D(x,y)|x,y ∈ A}.
+</ul>
+
+<P>In a similar way, you can define the <b>distance</b> between two subsets, or between a point and a set, as being a greatest lower bound (glb).
+
+
+<P>An <b>open/closed ball</b> is analogous to an open/closed interval on the real line: 
+<ul>
+ <li>X,D is a metric space
+ <li>given a point p and a distance value r (a radius)
+ <li>an open ball of radius r at p is {x∈X | D(p,x) &lt; r} = B(p;r) = B<sub>r</sub>(p)
+ <li>a closed ball of radius r at p is {x∈X | D(p,x) &le; r} = B[p;r] = B<sub>r</sub>[p] 
+</ul> 
+Sometimes the B-notation has a symbol for the metric added to it, to remove ambiguity.
+
+<P>Note that Gemignani refers to this idea as a D-p-neighbourhood, or p-neighbourhood.
+This seems to go against common convention.
+Common convention defines a neighbourhood thusly: a set N is a neighbourhood of x if N contains on open set that in turn contains x.
+ 
+<P>An <b>open set</b> contains an open ball around every point:
+<ul>
+ <li>X,D is a metric space
+ <li>S ⊂ X is as subset of X
+ <li>if for every p ∈  S, there's an open ball of some radius r B(p;r) ⊂ S
+ <li>then S is an open set 
+</ul> 
+
+ 
+<P>A <b>closed set</b> is the X-complement of an open set. There are four possibilities for a subset S ⊂ X: 
+<ul>
+ <li>both open and closed
+ <li>neither open nor closed
+ <li>only open
+ <li>only closed
+</ul>
+
+<P>Again, these are specific to a metric, so sometimes the notation can make the metric explicit.
+
+<P>Open and closed sets on a metric space <b>follow the same rules that later define a topological space</b>.
+
+<P>Open sets: the following are true for a metric space X, D:
+<ul>
+ <li>X and ∅ are open sets 
+ <li>the intersection of any two open sets is also an open set 
+ <li>the union of any (possibly infinite) family of open sets is also an open set
+</ul> 
+ 
+<P>Closed sets: the following are true for a metric space X, D (note than union and intersection are interchanged!):
+<ul>
+ <li>X and ∅ are closed sets 
+ <li>the union of any two closed sets is also a closed set 
+ <li>the intersection of any (possibly infinite) family of closed sets is also a closed set
+</ul> 
+
+
+<P>The distance between a closed set and any element of its complement is always greater than 0:
+<ul>
+ <li>X, D is a metric space
+ <li>S ⊂ X is a subset of X
+ <li>S is closed iff any point x in its complement (X - S) has D(x,S) > 0
+ <li>that is, a closed set contains all points that are 0 distance from it
+</ul>
+
+<P>The <b>closure</b> of a set has all points having zero distance from the set:
+<ul>
+ <li>X,D is a metric space
+ <li>S ⊂ X is a subset of X
+ <li>the closure of S is Cl S = {x ∈  X | (D(x,S) = 0}
+ <li>Cl S is a closed set
+ <li>Cl S contains the set S, plus any other points that have 0 distance from S
+ <li>Cl S is the smallest closed set that contains S
+ <li>the closure of (0,1) is [0,1]
+</ul>  
+ 
+<P>The ideas of sequence, limit, and continuity from calculus are generalized into metric spaces.
+At the same time, the ideas can be expressed at a slightly higher level than epsilon-delta language, 
+by using open balls, and open sets.
+
+<P>For example, <b>continuity</b> can be expressed like this:
+<ul>
+ <li>two metric spaces X,D and Y,D'
+ <li>map f : X ➔  Y
+ <li>high level: f is continuous iff the preimage of any <em>open ball</em> in Y is an open set in X.
+ <li>high level: f is continuous iff the preimage of an <em>open set</em> in Y is an open set in X.
+ <li>low level: f is continuous if given any f(a) ∈ Y and any p&gt;0, there is a q&gt;0 such that if x ∈ B(a,q) then f(x) ∈ B(f(a),p).
+ <li>low level: f is continuous iff it maps any sequence in X (which converges to a limit L) to a sequence in Y which converges to f(L).  
+</ul>  
+
+
+<P>The interval [0, 0.5) is open in [0,1], but closed in R (think of open balls - Conover p84.)
+ 
+ <P><b>Topological Space</b>
+ <P>Topological spaces are defined on sets. They have three rules.
+ 
+ <P>X is any set, and T is a collection of subsets of X.
+ The collection of subsets T is a <b>topology</b> on X if the following are true:
+<ul>
+ <li>X and ∅ are  members of T.
+ <li>The intersection of any two members of T is again in T (T is closed under finite intersections)
+ <li>The union of any (possibly infinite) family of members of T is again in T (T is closed under arbitrary unions) 
+</ul>  
+
+
+The members of T are said to be <b>T-open subsets</b> of X, or simply <b>open subsets</b> of X.
+(The rules can also be expressed using closed subsets.)
+
+<P>A <b>topological space</b> is the pair (X,T).
+
+<P>"It turns out that these three are the fundamental properties that open sets should satisfy
+to allow us to do useful things with them, like defining continuous functions, convergence of
+sequences, and so on." - Ivan Khatchatourian.
+
+<b>Topological properties</b> are those properties which can be defined using open sets.
+
+<P>A <b>closed subset</b> is the complement of an open set.
+The closed subsets of X have properties that are a variation on the rules for topologies in general. 
+The collection C of closed subsets of T satisfy (note how union and intersection are reversed here): 
+<ul>
+ <li>X and ∅ are  members of C.
+ <li>The <em>union</em> of any two members of C is again in C.
+ <li>The <em>intersection</em> of any (possibly infinite) family of members of C is again in C. 
+</ul>  
+
+<P>A subset of X may be open, closed, both (<b>clopen</b>), or neither.
+X and ∅ are always both open and closed.
+
+<P>A <b>neighbourhood</b> of <em>p</em> is a set which contains an open set which in turn contains <em>p</em>.
+A neighbourhood isn't necessarily an open subset. 
+Be careful: the definition of neighbourhood varies in the literature! 
+
+<P>Open and closed maps:
+<ul>
+ <li>(X,U) and (Y, V) are topological spaces
+ <li>m: X ➔ Y 
+ <li>m is an <b>open map</b> if it maps each open set in U to an open set in V: m(u) ∈ V
+ <li>m is a <b>closed map</b> if it maps each closed set in U to a closed set in V
+</ul>
+ 
+<P><b>Example topologies</b>:
+<ul>
+ <li>trivial [indiscrete] topology, for any X: {X, ∅}. This is the smallest number of possible subsets in a topology. 
+ <li>discrete topology, for any X: P(X), the power set of X. Here, all possible subsets of X are open. This is the largest number of possible subsets in a topology.
+ <li>a metric always induces a topology
+ <li>a total order relation always induces a topology
+ <li>ray topology on the real line {(a, ∞): a ∈ R} ∪ {∅,R}
+ <li>finite-complement [co-finite] topology, for any X: U is open iff (X - U) is finite.
+</ul>  
+  
+  
+<P>There's an alternate definition due to <a href='https://en.wikipedia.org/wiki/Topological_space#Definition_via_neighbourhoods'>Hausdorff's original scheme</a>.
+It is based on <b>neighbourhoods</b>, not open sets. 
+The language of that style emphasizes that topology is about 'what is near to what', without necessarily having a specified distance (as in a metric space).
+
+<P>Jargon for when one topology is a subset of another:
+<ul>
+ <li>T<sub>1</sub> and T<sub>2</sub> are topologies on a set X. 
+ <li>T<sub>1</sub> <b>smaller [weaker, coarser]</b>, and T<sub>2</sub> is <b>larger [stronger, finer]</b>: T<sub>1</sub> ⊂ T<sub>2</sub>
+ <li>if T<sub>1</sub> &ne; T<sub>2</sub>, then you can say <b>strictly smaller/larger</b>
+</ul>
+
+
+
+<P><b>Continuity</b> is important both in math and physics. 
+It's likely the case that almost all maps in physics are continuous.
+
+<P><em>"In fact, continuity is probably the single most important concept in all mathematics."</em> - Robert Conover.
+
+<P>A continuous map m: X ➔ Y <b>preserves closeness</b>: points that are close in X are mapped to points that are close in Y.
+
+<P>Continuity can be expressed in a wide number of ways, a few of which are included below.
+
+<P>The <b>"ε-δ" definition</b> for a function from the reals into the reals f:(D ⊂ R) ➔ R uses the absolute value metric; it can be easily generalized to a map 
+between any two metric spaces:
+<P>f is continuous at x<sub>0</sub> if for any ε &gt; 0 there exists a δ &gt; 0 such that |f(x) - f(x<sub>0</sub>)| &lt; ε whenever x ∈ D and |x - x<sub>0</sub>| &lt; δ.    
+ 
+<P>Staying with metric spaces, continuity can be expressed <b>using open balls</b> like this:
+<ul>
+ <li>(X,d1) and (Y,d2) are metric spaces
+ <li>f: (D ⊂ X) ➔ Y 
+ <li>f is continuous at x<sub>0</sub> if given any ε &gt; 0 there exists a δ &gt; 0 such that: 
+ <li>f(x) ∈ B(f(x<sub>0</sub>),ε) whenever x ∈ B(x<sub>0</sub>,δ)
+ <li>this means that f(B(x<sub>0</sub>,δ)) ⊂ B(f(x<sub>0</sub>), ε)
+</ul>
+
+<P>Robert Conover: "<em>...it turns out that it is not the metrics themselves that are important to continuity; rather, the important things are 
+the topologies induced by these metrics, and the fact that these topologies come from metrics is really of no consequence once we have them."</em>  
+
+<P>This leads to a definition of continuity <b>using open sets</b> (and maps instead of functions):
+<ul>
+ <li>X and Y are topological spaces
+ <li>m: X ➔ Y 
+ <li>m is continuous at x<sub>0</sub> iff:
+ <li>whenever V is an open subset of Y with f(x<sub>0</sub>) ∈ V
+ <li>then there exists an open subset U of X such that x<sub>0</sub> ∈ U and f(U) ⊂ V.     
+</ul>
+
+<P>The composition of two continuous maps is also a continuous map.
+
+<P>Here's <b>an even simpler definition using open sets</b>:
+<ul>
+ <li>X and Y are topological spaces
+ <li>m: X ➔ Y 
+ <li>m is continuous on X iff:
+ <li>whenever V is an open subset of Y, then the preimage(V) is an open subset in X
+ <li>that is, a map is continuous iff its <em>inverse</em> preserves open sets
+</ul>
+
+<P>Similar logic applies to other cases. A map m: X ➔ Y is continuous iff:
+<ul>
+ <li>the preimage of open sets in Y maps to to open sets in X 
+ <li>the preimage of closed sets in Y maps to closed sets in X 
+ <li>the preimage of each open set in a basis for Y maps to an open set in X
+ <li>the preimage of each open set in a sub-basis for Y maps to an open set in X
+ <li>it's continuous at every x ∈ X
+ <li>for every A ⊂ X, f(~A) = ~f(A), where ~ means the closure of a set (the image of a closure is the closure of the image)
+</ul>
+
+<P>Continuity with closures reads especially nice:
+<ul>
+ <li>(X,T<sub>x</sub>) and (Y,T<sub>y</sub>) are topological spaces
+ <li>m: X ➔ Y
+ <li>m is continuous iff for every A ⊂ X: 
+ <li>m(Cl<sub>x</sub>(A)) ⊂ Cl<sub>y</sub>(m(A))
+ <li>Cl<sub>y</sub>(m(A)) ⊂ m(Cl<sub>x</sub>(A))
+</ul>
+
+<P>If we declare that a point <em>x</em> is "close to" a subset A ⊂ X if x ∈ Cl(A), 
+then this terminology allows for a plain English description of continuity: 
+<em>m</em> is continuous iff for every subset A ⊂ X, <em>m</em> maps points that are close to A to points that are close 
+to <em>f(A)</em>.
+
+
+
+
+
+
+<P>A <b>homeomorphism</b> ("<em>same shape</em>") is an important kind of map, since, <b>by definition, it preserves topological properties</b>.
+It's defined like this:
+<ul>
+ <li>X and Y are topological spaces
+ <li>m: X ➔ Y 
+ <li>m is a one-to-one correspondence (bijective), and thus has an inverse m<sup>-1</sup>
+ <li>m and m<sup>-1</sup> are both continuous
+</ul>
+(Some authors drop the <em>onto</em> requirement.)
+
+<P>If a homeomorphism exists between X and Y, then the two topological spaces are <b>homeomorphic</b>, and we write X ≃ Y.
+
+<P>Some properties that are <b>not topological</b>:
+<ul>
+ <li>size, distance
+ <li>'curvyness'
+ <li>order
+</ul>
+
+<P>Examples:
+<ul>
+ <li>reals with absolute value metric: [0,1] and [2,4] : homeomorphic 
+ <li>reals with absolute value metric: (0,1) and R : homeomorphic
+ <li>stereographic projection between the unit sphere in R<sup>3</sup> with a single point removed and the set of all points in R<sup>2</sup> : homeomorphic
+ <li>reals with absolute value metric: [0,1] and (0,1) : not homeomorphic 
+ <li>plane with Euclidean metric: a circle and a line segment : not homeomorphic
+ <li>R<sup>n</sup> and R<sup>m</sup> (n &ne; m) with a Euclidean metric: not homeomorphic
+ <li>m: [0,2pi) ➔ S<sup>1</sup>, the unit circle on the plane (usual topology): not homeomorphic (m is bijective/continous, but m<sup>-1</sup> is bijective/non-continuous; nearness is not preserved by m<sup>-1</sup>)
+</ul>
+
+<P>Homeomorphisms are analogous to:
+<ul>
+ <li>vector spaces : bijective linear transformations
+ <li>groups/rings/fields/etc. : isomorphisms
+ <li>manifolds : diffeomorphisms
+</ul>
+
+
+<P>Logically equivalent statements, where X and Y are topological spaces, and m: X ➔ Y: 
+<ul>
+ <li>m is a homeomorphism 
+ <li>m is an open map 
+ <li>m is a closed map 
+ <li>U ⊂ X is open iff m(U) is open
+ <li>U ⊂ Y is open(closed) iff its preimage is open(closed) in X
+ <li>if B is a basis for X, then the image of the basis is a basis in Y   
+</ul>
+
+<P>A property is a <b>topological invariant</b> iff whenever (X, T ) and (Y, U) are homeomorphic topological spaces, one has property φ if and only if the
+other has property φ.
+
+<P>Examples of topological invariants:
+<ul>
+ <li>T<sub>0</sub> and T<sub>1</sub> separation 
+ <li>Hausdorff separation
+ <li>Separable
+ <li> Cardinality
+ <li> First countable
+ <li> Second countable
+ <li> Countable chain condition
+</ul>
+
+ <P>Homeomorphic spaces are essentially equivalent from a topological point of view. 
+ There is a natural one-one correspondence between their open sets.
+ Put another way, by relabeling the points of one set, you get the other set (and its topology).
+ 
+ <P>"Almost all geometric studies can be classified according to the type of properties they study; in particular, these types of 
+ properties are those which are preserved by certain kinds of functions.
+ Topology, considered as a branch of geometry, studies properties preserved by a very special type of function, the homeomorphism." - Conover 
+ 
+ <P>Let T be the class of all topological spaces. Then the relation R defined on T by "is homeomorphic to" is an equivalence relation on T.
+ 
+<P>Given a topological space (X,T), a <b>basis for the topology</b> T is a collection B of subsets of X which satisfies:
+<ul>
+ <li> every set in B is an open set in T 
+ <li> each open set in T is a union of members of B
+</ul>
+
+To note:
+<ul>
+ <li> The members of B are called <b>basic open sets</b> in (X,T). 
+ <li> A topology can have more than one basis.
+ <li> Working with a basis is usually easier than working with all open sets.
+ <li> The collection B covers X: each x is in at least one member of B.
+ <li> The intersection of two members of B is a union of some members of B.
+ <li> X itself is the union of members of B.
+ <li> Neigbourhoods can be defined using basic open sets instead of open sets.
+</ul>
+
+<P>Examples:
+<ul>
+ <li> R with the usual topology: all open intervals
+ <li> R with the usual topology: all open rays (a, ∞)
+ <li> R with the usual topology: all half-open intervals [a,b) or (a,b]
+ <li> in a metric space: all open balls 
+ <li> Counterexample, not a basis for R with the usual topology: all closed intervals
+</ul>
+
+<P>Out of a collection B, build a topology:
+<ul>
+ <li>X is any set.
+ <li>B is a collection of subsets, which satisfies two conditions:
+ <li>- 1) X is the union of members of B
+ <li>- 2) the intersection of two members of B is a union of members of B
+ <li>Define a topology on X to be T = {U ⊂ X | U is a union of members of B} 
+ <li>B is then a basis for T.  
+</ul>
+
+<P>How to tell if B is the basis for a topology B*:
+<ul>
+ <li>X is any set
+ <li>B is a collection of subsets of X
+ <li>B* is the collection of all possible unions of members of B
+ <li>Is B* a topology on X (for which B is the basis)? Two conditions:
+ <li>1) the union of B = X
+ <li>2)for B<sub>1</sub> and B<sub>1</sub> in B,
+ <li>and any x ∈ B<sub>1</sub> ⋂ B<sub>2</sub>,
+ <li>there exists a B<sub>3</sub> in B such that x ∈ B<sub>3</sub> ⊂  B<sub>1</sub> ⋂ B<sub>2</sub> 
+</ul>
+
+
+
+<P>Sub-basis generates a basis:
+<ul>
+ <li>X, T is a topological space
+ <li>a collection S is a sub-basis if this set is indeed a basis:  
+ <li>{B|B is the <em>intersection</em> of finitely many members of S}
+ <li>(that is, the collection of all finitely many intersections of S)
+</ul>
+
+<P>Items to note:
+<ul>
+ <li><b>a sub-basis generates using finitely many intersections, but a basis generates using arbitrary unions</b>
+ <li>the members of a sub-basis are called <b>sub-basic open sets</b>
+ <li>any collection of subsets of X whose union is X is a sub-basis for a topology on X
+ <li>example: the set of all rays is a sub-basis
+ <li>unlike the situation for a basis, <b>any collection of subsets is a sub-basis for some topology</b> 
+</ul>
+
+<P>Means of specifying a topology:
+<ul>
+ <li>define the open sets
+ <li>define the closed sets
+ <li>define a basis
+ <li>define a sub-basis
+</ul>
+
+<P>Checking for continuity reduces to checking a basis or, even better, a sub-basis:
+<ul>
+ <li>X,T<sub>x</sub> and Y,T<sub>y</sub> are two topological spaces
+ <li>B is a basis for T<sub>y</sub>
+ <li>m: X ➔ Y
+ <li>m is continuous iff for any member of B, its preimage is open
+ <li>the same can be said of a sub-basis
+</ul>
+
+<P>A <b>local basis</b> at x:
+<ul>
+ <li>X,T is a topological space and x ∈ X
+ <li>B<sub>x</sub> is a collection of open sets. It is a <em>local basis at x</em> iff:
+ <li>for any open set U containing x, there's a B ∈ B<sub>x</sub> such that x ∈ B ⊂ U
+ <li>if every x ∈ X has a <em>countable local basis</em>, then the space X is called <b>first-countable</b>
+ <li>for a first-countable space X: a set F is closed in X iff any convergent sequence of points in F converges to a point in F 
+</ul>
+
+<P>A topological space is <b>second-countable</b> if the topology can be generated by a countable basis.
+Every second-countable space is first-countable (but not vice versa).
+
+<P><b>Related sets</b> for a set A ⊂ X, where (X, T) is a topological space:
+
+<P>Ā or Cl A or cl A: the <b>closure</b> of a set A is the intersection of all closed sets that contain A.
+
+<P>Facts about the closure of a set Ā:  
+<ul>
+ <li>Ā is the union of A and its boundary ∂A
+ <li>Ā is a closed set
+ <li>Ā is the smallest closed set containing A
+ <li>Ā contains A, Ā ⊃ A  
+ <li>A is closed iff A = Ā
+ <li> Cl(Cl(A)) = Cl(A)
+ <li> in any space (X,T), Cl(∅) = ∅ and Cl(X) = X
+ <li> Cl(A ∪ B) = Cl(A) ∪ Cl(B) - generalizes to finitely many unions; if infinite unions then replace = with ⊃ 
+ <li> Cl(A ⋂ B) ⊂ Cl(A) ⋂ Cl(B) - generalizes to any number of intersections
+ <li> x ∈ Ā iff any open set containing x also contains an element of A
+ <li> roughly,  Ā is the collection of points that A is "close to"
+</ul>
+
+<P>Examples (with the usual topology):
+<ul>
+ <li>R: Cl( (0,1) ) = [0,1] 
+ <li>R: Cl( [0,1) ) = [0,1] 
+ <li>R: Cl(Q) = R (the rationals Q)
+ <li>C the complex plane: Cl( {|z| &gt; 1} ) = {|z| &ge; 1}
+ <li>A = {1/n: n ∈ N}:  Ā = A ∪  ∅
+ <li>Cl( {x} ) = {x}  (but not true in all topological spaces)      
+</ul>
+
+<P>A is <b>dense</b> if its closure is the whole set X: Ā = X. That is, A is "close to everything".
+<P>Examples (with the usual topology):
+<ul>
+ <li>Q (rationals) is dense in R 
+ <li>R - Q (irrationals) is dense in R 
+ <li>N is not dense in R
+ <li>no finite set is dense 
+</ul>
+
+ 
+ <P>The <b>interior</b> of A is the union of all open sets which are subsets of A:
+<ul>
+ <li>symbol: A&deg;, Int A, int A, or ⟨A⟩ 
+ <li>A&deg; = A - ∂A 
+ <li>A&deg; = X - Cl(X-A) 
+ <li>if B = X - A, then A&deg; is ... 
+ <li>(A&deg;)&deg; = A&deg;
+ <li>(A ⋂ B)&deg; = A&deg; ⋂ B&deg; 
+ <li> A is open only iff A = A&deg;
+ <li>A&deg; is the largest open subset of A 
+ <li>A&deg; is open
+ <li>the interior is <em>dual</em> to closure: just swap ⊂ with ⊃,  and ⋂ with ∪ 
+</ul>
+ 
+<P>The <b>exterior</b> of A is the complement of Ā:
+<ul>
+ <li> ext A = X - Ā
+ <li>it consists of the points that are in neither the set nor its boundary
+ <li>ext A is open
+ <li>it's the union of all open sets that are disjoint from A
+ <li>it's the largest open set that is disjoint from A
+ <li> ext A = int(X - A)
+</ul> 
+
+<P>The <b>boundary</b> [frontier] of A is:
+<ul>
+ <li> labelled ∂A or Fr A
+ <li> {x|each open set containing x, that also contains points of both A and X - A}
+ <li> ∂A is closed
+ <li> in a metric space, d(∂A, A) = d(∂A, X - A) = 0
+ <li> A is open iff have ∂A ⋂ A = ∅  
+ <li> A is closed iff ∂A ⊂ A
+ <li> ∂A = ∂(X - A)
+ <li> Ā - ∂A = A&deg; 
+</ul> 
+
+<P>The interior, boundary, and exterior of a subset together partition the whole space into three parts.
+The interior and exterior are always open, while the boundary is closed. 
+ 
+ 
+ 
+ 
+<P>A <b>subspace</b> is defined alongside a <b>subspace topology [relative topology]</b> :
+<ul>
+ <li>X, T is a topological space
+ <li>Y ⊂ X 
+ <li>the subspace topology T<sub>Y</sub> is the intersection of all open sets in X with Y:
+ <li>T<sub>Y</sub> = {U ⋂ Y : U ∈ T}
+ <li>T<sub>Y</sub> is said to be <em>induced by</em> or <em>inherited from</em> T
+ <li>the topological space Y, T<sub>Y</sub> is said to be a <em>subspace</em> of X,T
+</ul>
+
+<P>"Topological spaces found in common mathematical applications actually arise as subspaces of relatively simple spaces like 
+R<sup>n</sup><sub>usual</sub>, or as spaces that are homeomorphic or locally homeomorphic to subspaces of R<sup>n</sup><sub>usual</sub>, 
+subspaces of various function spaces, etc." - I. Khatchatourian
+
+<P>Basis for a subspace of (X,T) is also defined using intersections with the subset:
+<ul>
+ <li>A ⊂ X 
+ <li>B<sub>T</sub> is a basis for T on X
+ <li>Then: B<sub>A</sub> = {B ⋂ A : B ∈ B<sub>T</sub>}
+ <li>is a basis for the subspace topology on A.
+</ul>
+
+<P>Closed sets in a subspace (X,T) are also defined using intersections with the subset:
+<ul>
+ <li>A ⊂ X is a subspace of X 
+ <li>F ⊂ A is closed in the subspace topology of A iff there exists a closed set C in X such that F = C ⋂ A
+</ul>
+
+<P>Closures in a subspace:
+<ul>
+ <li>A ⊂ X is a subspace of X 
+ <li>if S ⊂ A, then Cl<sub>A</sub>(S) = Cl<sub>X</sub>(S) ⋂ A
+</ul>
+
+<P>An open/closed set in X may or may not be an open/closed set in a subspace A ⊂ X.
+But if A itself is open/closed, then:
+<ul>
+ <li>if A is an open(closed) set in X, then S ⊂ A is open(closed) in A iff it's open(closed) in X 
+</ul>
+ 
+<P>"Transitivity" of subspaces: 
+<ul>
+ <li>X,T is a topological space
+ <li>Y is a subspace of X
+ <li>Z is a subspace of Y, with respect to Y
+ <li>then Z is subspace of X, and has the same topology that it would have as a direct subspace of X 
+</ul>
+
+
+<P>An important question is "Which properties are passed on to a subspace?"
+
+
+
+
+
+<P>One way to derive a new topology from an existing one is to use an <em>equivalence relation</em>.
+(Recall that an equivalence relation defines a <em>partition</em> of a set. Conversely, a partition can be used to define an equivalence relation.)
+<ul>
+ <li>X,T is a topological space
+ <li>R is an equivalence relation on X
+ <li>for each x ∈ X, let [x] = {y∈ X: yRx} be the equivalence class for x (the items equivalent to x under R)
+ <li>X/R is the set of all [x]'s; it's called a <b>quotient space</b> (when it's given the quotient topology - see below)
+ <li>the <b>identification [projection] map</b> m: X ➔ X/R is defined as m(x) = [x]
+ <li>using the picture of arrows and points, under m,  many points in X "collapse" onto a single point in X/R
+ <li>the preimage of [x] under m isn't just x, it's everything that's equivalent to x (i.e. many things, not one)
+ <li>the <b>identification topology [quotient topology]</b> is defined as:
+ <li><em>under m, a set is open in X/R iff its preimage under m is open in X</em>
+ <li>that is, "We put a topology on X/R by defining a subset U of X/R to be open if all elements of X contained in all the members of U form an open subset of X."
+ <li>moreover, m is continuous
+ <li>moreover, a subset is closed in X/R iff its preimage is closed in X
+</ul>
+
+<P>In the plane, take a rectangle bounded by:
+<ul>
+ <li>0 &le; x &le; 2pi
+ <li>0 &le; y &le; 1
+</ul>
+
+then you can define various famous topological objects by defining various equivalence relations (identifications) involving the edges:
+<ul>
+ <li>cylinder: &rarr; for the horizontals; that is, (x,0)=(x,1) for all x in [0,2pi], and (x,y)=(x,y) for all points in the rectangle (one opposing pair of edges in the same direction)
+ <li>torus: &rarr; for the horizontals, and &uarr; for the verticals (both pairs of edges in the same direction)
+ <li>Mobius strip: &uarr; for the right-vertical, and &darr; for the right-vertical (one pair of opposite edges in the opposite directions)
+ <li>Klein bottle: &rarr; for the horizontals, and &uarr; for the left-vertical, &darr; for the right-vertical (one pair of opposite edges in the same dir, the other pair in the opposite dir)
+ <li>projective plane: arrows going clockwise around the edges (both pairs of opposing edges in opposite directions)
+</ul>
+
+
+
+<P><b>Product spaces</b> build on the idea of a Cartesian product of two sets, defining a set of ordered pairs.
+In topology, product spaces can be defined for an arbitrary number of input sets, including an infinite number.
+But in physics, it's likely the case that product spaces are formed from just two sets at a time, so I'll limit myself to that case.
+
+<P>
+<ul>
+ <li>X<sub>1</sub> and X<sub>2</sub> are two non-empty sets 
+ <li>Cartesian product X<sub>1</sub> &times; X<sub>2</sub> = {(x<sub>1</sub>,x<sub>2</sub>): x<sub>1</sub> ∈ X<sub>1</sub> and x<sub>2</sub> ∈ X<sub>2</sub>}
+ <li>X<sub>1</sub> and X<sub>2</sub> are called the <b>factors</b> of X<sub>1</sub> &times; X<sub>2</sub>  
+ <li><b>projection map</b> p<sub>1</sub>:X<sub>1</sub> &times; X<sub>2</sub> ➔  X<sub>1</sub> is defined as p<sub>1</sub>(x<sub>1</sub>,x<sub>2</sub>) = x<sub>1</sub> 
+ <li><b>projection map</b> p<sub>2</sub>:X<sub>1</sub> &times; X<sub>2</sub> ➔  X<sub>2</sub> is defined as p<sub>2</sub>(x<sub>1</sub>,x<sub>2</sub>) = x<sub>2</sub>
+</ul>
+
+<P>The <b>product topology</b> is defined using a sub-basis. 
+ Remember that a basis generates a topology via <em>unions</em>, but a sub-basis generates a basis using <em>intersections</em>: 
+<ul>
+ <li>X<sub>1</sub>, T<sub>1</sub> and X<sub>2</sub>, T<sub>2</sub> are two topological spaces 
+ <li>U<sub>1</sub> ∈ T<sub>1</sub> and U<sub>2</sub> ∈ T<sub>2</sub> are open sets
+ <li>the <em>product topology</em> on X<sub>1</sub> &times; X<sub>2</sub> uses preimages (under the projections) of the open sets in T<sub>1</sub> and T<sub>2</sub> as its sub-basis:
+ <li> {p<sub>1</sub><sup>-1</sup>(U<sub>1</sub>), p<sub>2</sub><sup>-1</sup>(U<sub>2</sub>) : U<sub>1</sub> ∈ T<sub>1</sub> and U<sub>2</sub> ∈ T<sub>2</sub>}
+ <li> the above can be modified to use bases B<sub>1</sub> and B<sub>2</sub> instead of open sets U<sub>1</sub> and U<sub>2</sub>  
+</ul>
+
+<P>The key idea is the preimages under the projections of the open sets. 
+These are called <b>strips</b>. 
+Pictorially, it's very useful to draw in a model in R<sup>2</sup>:
+<ul>
+ <li>use X<sub>1</sub> and X<sub>2</sub> as the two axes
+ <li>the open sets U<sub>1</sub> and U<sub>2</sub> correspond to open intervals on the axes
+ <li>the projections p<sub>1</sub>, p<sub>2</sub> map vertical and horizontal strips (areas) onto U<sub>1</sub>, U<sub>2</sub> (respectively)
+ <li>that can be stated in reverse using preimages:
+ <li>p<sub>1</sub><sup>-1</sup>(U<sub>1</sub>) = U<sub>1</sub> &times; X<sub>2</sub> (a rectangular area or strip)
+ <li>p<sub>2</sub><sup>-1</sup>(U<sub>2</sub>) = X<sub>1</sub> &times; U<sub>2</sub> (a rectangular area or strip)
+ <li>the intersection of strips defines an open area in the plane, corresponding to a sub-basis being used to generate a basis    
+</ul> 
+
+<P>Instead of a sub-basis, you can use a basis instead, for the product topology:
+<ul>
+ <li>product of open sets: {U<sub>1</sub> &times; U<sub>2</sub> :  U<sub>1</sub> ∈ T<sub>1</sub> and U<sub>2</sub> ∈ T<sub>2</sub>}
+ <li>product of sets in a basis: {B<sub>1</sub> &times; B<sub>2</sub> :  B<sub>1</sub> ∈ ℬ<sub>1</sub> and B<sub>2</sub> ∈ ℬ<sub>2</sub>}, where the ℬ's are bases
+</ul> 
+
+<P>More:
+<ul>
+ <li>the product of open sets U<sub>1</sub> &times; U<sub>2</sub> is open in the product space (same for closed)
+ <li>an open set in X<sub>1</sub> &times; X<sub>2</sub> need not be the product of open sets; rather, it is the <em>union</em> of sets which are the products of open sets (same for closed)
+ <li>closure, with A<sub>1</sub> ∈  X<sub>1</sub> and A<sub>2</sub> ∈  X<sub>2</sub> : Cl(A<sub>1</sub>) &times; Cl(A<sub>2</sub>) = Cl(A<sub>1</sub> &times; A<sub>2</sub>)
+ <li>interior, with A,B ∈  X : Int(A &times; B) = Int(A) &times; Int(B)
+ <li>the product of subspaces is a subspace of the product (you get the same topology "from both methods of getting there")
+ <li>the projection maps are continuous
+ <li>X<sub>1</sub> and  X<sub>2</sub> are each homeomorphic to a subspace of X<sub>1</sub> &times;  X<sub>2</sub>  
+</ul> 
+
+<P>The composition of continuous maps is also continuous. 
+For product spaces, the converse is also true:
+<ul>
+ <li>X<sub>1</sub> and X<sub>2</sub> are topological spaces
+ <li>p<sub>1</sub> and p<sub>2</sub> are the projection maps for the product space  
+ <li>m:Y ➔ X<sub>1</sub> &times; X<sub>2</sub>  
+ <li>then m is continuous iff p<sub>1</sub> ∘ m and p<sub>2</sub> ∘ m are continuous
+ <li>that is, a map into a product space is continuous iff its composition with the projections are continuous 
+</ul> 
+ 
+
+
+
+
+<P>In topology, the idea of <b>separation</b> between sets is a bit stronger than being disjoint. 
+There are different levels of separation, which form a hierarchy of "increasing separation."
+
+<P>X,T is a topological space and x, y are two distinct points in X :
+<ul>
+ <li>(neighborhood of x = set that contains an open set that contains x)
+ <li><b>T<sub>0</sub></b>: there's an open set that contains one but not the other for <em>at least one</em> of x and y
+ <li><b>T<sub>1</sub></b>: there's an open set that contains one but not the other for <em>both</em> of x and y
+ <li><b>T<sub>2</sub></b>: there's an open set that contains one but not the other for <em>both</em> of x and y, AND the two open sets are disjoint
+</ul>
+
+<P>Confusing: some authors use neighborhood instead of open set!
+
+To note:
+<ul>
+ <li>the T<sub>2</sub> property is extremely common, and to be expected in all physics contexts
+ <li>every metric space is T<sub>2</sub>
+ <li>totally ordered sets are T<sub>2</sub>
+ <li>every subspace of a T<sub>0</sub>(T<sub>1</sub>, T<sub>2</sub>) space is also T<sub>0</sub>(T<sub>1</sub>, T<sub>2</sub>) 
+ <li>if space X is homeomorphic to space Y, then if X is T<sub>0</sub> (T<sub>1</sub>, T<sub>2</sub>) then so is Y
+ <li>T<sub>1</sub>: for each point x, {x} is a closed set (all singletons are closed)
+ <li>T<sub>1</sub>: a sequence can converge to more than one limit! In a T<sub>2</sub> space, sequences have a max of one limit
+ <li>T<sub>1</sub>: every finite subset of X is closed
+ <li>T<sub>1</sub>: the complement of every finite subset of X is open
+ <li>T<sub>1</sub>: every subset of X is the intersection of all the open sets containing it
+ <li>T<sub>2</sub>: products of T<sub>2</sub> spaces are T<sub>2</sub>, but the same doesn't apply to quotient spaces
+ <li>T<sub>2</sub>: compact sets are always closed
+</ul>
+
+<P>A topological space is said to be <b>regular</b> if points can be separated from closed sets:
+<ul>
+ <li>X, T is a topological space
+ <li>given any closed set F ⊂ X, and some point x not in the closed set F
+ <li>you can find disjoint open sets that contain x and F 
+</ul>
+
+<P>A topological space is <b>T<sub>3</sub></b> if it's both T<sub>1</sub> and regular.
+
+
+
+
+<P>A <b>compact</b> set, roughly speaking: 
+<ul>
+ <li>is <em>closed</em>: it includes its limits
+ <li>is <em>bounded</em>: it doesn't go off to infinity
+ <li>it has <em>no holes</em> in it 
+</ul>
+
+<P>Compactness lets you replace an infinite number of open sets with a finite number of open sets.
+
+<P><em>"What compactness does for us is allow us to turn infinite collections of open sets into finite collections
+of open sets that do essentially the same thing. Compact spaces can be very large, as we will
+see in the next section, but in a strong sense every compact space acts like a finite space."</em> - Ivan Khatchatourian.
+
+<P><em>"Two of the most important properties in topology are compactness and being T<sub>2</sub>."</em> - Robert Conover.
+
+<P>Cover, sub-cover, and the cardinality of a sub-cover:
+<ul>
+ <li>X, T is a topological space
+ <li>S ∈  X
+ <li> {U<sub>i</sub>}, i ∈  I is an <b>open cover</b> (or just cover) of S iff S = ∪ U<sub>I</sub>   
+ <li> {V<sub>j</sub>}, j ∈ J is a <b>sub-cover</b> of S in U iff V is a subcollection of U (that is V ⊂ U), <em>and</em> V itself is also a cover of S  
+ <li> the cardinality of a subcover is important:
+ <li> S is <b>compact</b> iff every open cover of S has a <em>finite</em> sub-cover
+ <li> S is <b>Lindelof</b> iff every open cover of S has a <em>countable</em> sub-cover (a weaker property)
+ <li> an entire topological space is compact iff every open cover of it contains a finite sub-cover
+ <li> S is <em>not</em> compact if there's <em>at least one cover</em> of S that does <em>not</em> have a finite sub-cover
+</ul>
+
+<P>With R and the usual topology:
+<ul>
+ <li>[0,1] is compact
+ <li>(0,1) is not compact
+ <li>[0,infinity) is not compact
+ <li>R itself is Lindelof, but not compact since it's unbounded
+</ul>
+ 
+
+<P>With R and the usual topology:
+<ul>
+ <li><b>Heine-Borel theorem</b>: any cover of [0,1] contains a finite sub-cover
+ <li>in symbols:
+ <li>V<sub>I</sub> is a collection of open subsets of R
+ <li>V<sub>I</sub> is a cover of [0,1], that is [0,1] ⊂ ∪V<sub>I</sub>
+ <li>then, there are finitely many sets V<sub>i</sub> in V<sub>I</sub> such that [0,1] ⊂ ∪V<sub>i</sub>, i=1 to n
+</ul>
+
+<P>For A ⊂  R with the usual topology, the following are logically equivalent:
+<ul>
+ <li>A is compact
+ <li>A is closed and bounded
+ <li>every sequence in A has a convergent subsequence (that converges to a point in A)
+ <li>every real-valued continuous function on A is bounded 
+ <li>every infinite subset of A has a cluster point in A
+</ul>
+
+<P>From Wald's Appendix A: 
+<ul>
+ <li>A.1: a closed interval [a,b] is compact in R with the usual topology
+ <li>A.2: if X is Hausdorff and A ⊂ X is compact, then A is closed
+ <li>A.3: if X is compact and A ⊂ X is closed then A is compact
+ <li>A.4: a subset of R is compact iff it's closed and bounded
+ <li>A.5: if X is compact and m: X ➔ Y is continuous, then m(Y) = {y∈Y | y=m(x)}  is compact
+ <li>A.6: if X is compact and m: X ➔ R is continuous, then m is bounded and attains its max and min values
+ <li>A.7: if X<sub>1</sub> and X<sub>2</sub> are compact, then X<sub>1</sub> &times; X<sub>2</sub> with the product topology is compact (<b>Tychonoff theorem</b>) 
+ <li>A.8 a subset of R<sup>n</sup> is compact iff it's closed and bounded
+</ul>
+ 
+<P>More: 
+<ul>
+ <li>if X is compact and m: X ➔ Y is continuous and onto, then Y is also compact
+ <li>a subset of a compact set is not necessarily compact; for example, compare [0,1] and (0,1)
+</ul>
+
+<P>The <b>Bolzano-Weierstrass theorem</b> (A.9) is a relation between compactness and sequences:
+<ul>
+ <li>X, T is a topological space, and A ⊂ X
+ <li>if A is compact, then every sequence in A has an accumulation point in A
+ <li>if X is second-countable and every sequence in A has an accumulation point in A, then A is compact
+ <li>if X is second-countable, A is compact iff every sequence in A has a convergent subsequence with a limit in A
+</ul>
+
+<P>A <b>refinement</b> of a cover:
+<ul>
+ <li>X, T is a topological space, and {O<sub>i</sub>} is an open cover of X
+ <li>{V<sub>j</sub>} is also an open cover of X 
+ <li>we say {V<sub>j</sub>} is a <em>refinement</em> of {O<sub>i</sub>}
+ <li>if for each V<sub>j</sub>, there's an O<sub>i</sub> such that V<sub>j</sub> ⊂ O<sub>i</sub>
+ <li>(note how this differs from the idea of a sub-cover)    
+</ul>
+
+<P>A cover {O<sub>i</sub>} of a topological space is <b>locally finite</b>:
+<ul>
+ <li>if each x ∈ X has an open neighborhood W (an open set containing x) such that: 
+ <li>only <em>finitely many</em> O<sub>i</sub> intersect with W, O<sub>i</sub> ⋂ W &ne; ∅
+</ul>
+
+<P>A topological space X is <b>paracompact</b> if every open cover of X has a locally finite refinement.
+R<sup>n</sup> and S<sup>m</sup> are paracompact.
+
+<P>Skipping ahead a bit to manifolds:
+<ul>
+ <li>if a manifold M is paracompact, then: 
+ <li> (1) M admits a Riemannian metric
+ <li> (2) M is second-countable (the topology can be generated by a countable basis)
+ <li> #2 implies that M is covered by a locally finite, countable set of charts (&psi;<sub>i</sub>, O<sub>i</sub>), and the closure of each chart Cl(O<sub>i</sub>) is compact  
+ <li> conversely, if M satisfies either (1) or (2), then M is paracompact
+</ul>
+
+<P>For a paracompact manifold:
+<ul>
+ <li>there exists a <em>partition of unity</em> 
+ <li>it allows one to globalize many local results
+ <li>it allows one to define integration over the manifold
+</ul>
+
+
+<P>A set is <b>connected</b> if it can't be seen as the union of two disjoint open sets.
+A set is <b>disconnected</b> if it can indeed be seen as such a union.
+
+<P>For R (usual topology):
+ <ul>
+  <li>a subset of R is connected iff it's an interval
+  <li>the only clopen sets in R are the empty set and R itself
+ </ul>
+
+<P>Several equivalences, all expressed negatively. X is a topological space, and A and B are <b>non-empty</b> sets: 
+<ul>
+ <li>X cannot be written as A ∪ B, where A and B are disjoint and open
+ <li>X cannot be written as A ∪ B, where A and B are disjoint and closed
+ <li>X cannot be written as A ∪ B, where both Cl(A) ⋂ B = ∅ and A ⋂ Cl(B) = ∅
+ <li>X doesn't contain a non-empty clopen subset (both open and closed)
+ <li>if A is a subset of X, and A is not X or ∅, then A has a non-empty boundary ∂A &ne; ∅ 
+</ul>
+
+<P>Connectedness is preserved by continuous functions:
+<ul>
+ <li>X, Y are topological spaces
+ <li>m: X ➔ Y is a continuous map
+ <li>if X is connected, then m(X) is connected
+ <li>thus, a connected space cannot be homeomorphic to a space that's not connected; such a pair of spaces can never be topologically the same
+</ul>
+
+<P>X &times; Y is connected iff X and Y are connected.
+<P>If X is a connected space and R is an equivalence relation on X, then the identification space X/R is connected.
+<P>In R<sup>n</sup>, a subset A is <b>convex</b> if given any x, y in A, the closed segment xy is also in A. That is, segments between points in A stay in A.
+<P>If n &gt; 1, then R<sup>n</sup> is not homeomorphic to R. More generally, R<sup>n</sup> isn't homeomorphic to R<sup>m</sup> when the dimensions differ, n &ne; m.
+ 
+ <!--
+ https://en.wikipedia.org/wiki/Open_set
+ In practice, however, open sets are usually chosen to provide a notion of nearness that is similar to that of metric spaces, without having 
+ a notion of distance defined. In particular, a topology allows defining properties such as continuity, connectedness, and compactness, which 
+ were originally defined by means of a distance.
+ 
+ The most common case of a topology without any distance is given by manifolds, which are topological spaces that, near each point, 
+ resemble an open set of a Euclidean space, but on which no distance is defined in general.
+ 
+ 
+ Thus, rather than speaking of a concrete Euclidean metric, one may use sets to describe points close to x. This innovative idea has far-reaching 
+ consequences; in particular, by defining different collections of sets containing 0 (distinct from the sets (−ε, ε)), one may find different 
+ results regarding the distance between 0 and other real numbers. For example, if we were to define R as the only such set for "measuring distance", 
+ all points are close to 0 since there is only one possible degree of accuracy one may achieve in approximating 0: being a member of R. Thus, we find 
+ that in some sense, every real number is distance 0 away from 0. It may help in this case to think of the measure as being a binary condition: all 
+ things in R are equally close to 0, while any item that is not in R is not close to 0.
+ 
+ The union of any number of open sets, or infinitely many open sets, is open.[2] The intersection of a finite number of open sets is open.
+ A set may be both open and closed (a clopen set).
+ 
+https://en.wikipedia.org/wiki/Hausdorff_space
+...is a topological space where for any two distinct points there exist neighbourhoods of each which are disjoint from each other.
+Of the many separation axioms that can be imposed on a topological space, the "Hausdorff condition" (T2) is the most frequently used and discussed. 
+It implies the uniqueness of limits of sequences, nets, and filters.
+ 
+Almost all spaces encountered in analysis are Hausdorff; most importantly, the real numbers (under the standard metric topology on real numbers) 
+are a Hausdorff space. More generally, all metric spaces are Hausdorff. In fact, many spaces of use in analysis, such as topological groups and 
+topological manifolds, have the Hausdorff condition explicitly stated in their definitions. 
+ -->
+ 
+</body>
+</html>
