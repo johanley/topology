@@ -1,6 +1,7 @@
-# Point Set Topology
+# Point-Set Topology
 
 Notes on point-set topology (also known as general topology or elementary topology).
+Algebraic topology is not included here.
 
 The point of this project is to cover the prerequisites for reading  
 <a href='https://archive.org/details/largescalestruct0000hawk/page/n5/mode/2up'><em>The Large Scale Structure of Space-Time</em></a>, 
