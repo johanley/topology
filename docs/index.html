@@ -41,6 +41,7 @@ self-contained apart from requiring a knowledge of simple calculus, algebra, and
  <li>Roger Penrose, <em>Techniques of Differential Topology in Relativity</em>, 1972 
  <li>Barrett O'Neill, <em>Semi-Riemannian Geometry With Applications to Relativity</em> (Pure and Applied Mathematics 103), 1983
  <li>Notes by <a href='http://www.math.uct.ac.za/sites/default/files/image_tool/images/32/Staff/Emeritus_Professors/Prof_George_Ellis/Overview/GR%20Lectures.pdf'>Ellis from 2009</a>
+ <li>Notes by <a href='https://faculty.etsu.edu/gardnerr/5310/notes.htm'>Robert Gardner</a>. He has notes for Hawking/Ellis in preparation. 
 </ul>
 
  <P><b>Warnings:</b>
@@ -52,7 +53,7 @@ self-contained apart from requiring a knowledge of simple calculus, algebra, and
    Some authors treat <em>function</em> as a synonym for <em>map</em>. 
    <li>The term <em>range</em> is not used here. It has fallen out of fashion.
    <li>The term <em>neighbourhood</em> is dangerous because its definition has many variations. Hawking and Ellis use 'neighbourhood', 'coordinate neighbourhood', 
-   'open neigbourhood', 'normal neighbourhood'. Gemignani: he uses 'D-p-neighbourhood' or 'p-neighbourhood' for an open ball. Very confusing!
+   'open neighbourhood', 'normal neighbourhood'. Gemignani: he uses 'D-p-neighbourhood' or 'p-neighbourhood' for an open ball. Very confusing!
    <li>sometimes 'neighbourhood of x' means 'an open set that has x', sometimes it means 'a set that contains an open set that has x'.
    <li>The terms I use below are of course not exhaustive. Mathematicians define other terms that are not referenced here.
    <li>In this subject, it's often the case that multiple equivalent definitions of things are possible.
@@ -84,35 +85,49 @@ self-contained apart from requiring a knowledge of simple calculus, algebra, and
 <P>Remarks:
  <ul>
  <li>For many books, the approach is to generalize aspects of metric spaces into aspects of topological spaces.
- <li>Classical physics needs continuity on space and time. 
+ <li>Classical physics needs continuous histories (trajectories), and continuous derivatives to all levels. 
     An important point is that continuity can be expressed using the open sets of a chosen topology. 
     That is, continuity depends on the chosen topology.
     Note as well that defining continuity with open sets differs in character from defining with epsilons and whatnot. 
     At the level of open sets, the language takes on a non-local character.
- <li>homeomorphic map: both the map and its inverse exist (bijective), and both are continuous: they preserve topological properties.
+ <li>homeomorphic maps are continuous in both directions: both the map and its inverse exist (bijective), and both are continuous: they preserve topological properties.
  <li>the subset topology is important for physics, where you restrict a topological space to a subset, and use intersections with open sets. 
    When a continuous map is restricted to some part of the domain, the restricted map is still continuous.    
 </ul>
 
 <P>It's important to clearly understand the relation between metric spaces and topological spaces:
 <ul>
+ <li>a metric always induces a topology (because it defines who your neighbours are)
  <li>every metric space is a topological space
- <li>more specifically, <b>every metric space is a paracompact Hausdorff topological space</b>
- <li>a metric induces a topology 
+ <li>every metric space is paracompact (so space-time gets this for free)
+ <li>every metric space is Hausdorff (so space-time gets this for free)
+ <li>every metric space is normal, which is important for using partitions of unity (important in space-time)
  <li>different metrics may or may not induce the same topology
  <li>it's always possible to add a metric to a topological space; but adding a metric can change the topology!
  <li><b>metrizable</b>: a topological space is metrizable only if a metric can be added to it without changing the topology
  <li><b>a metric space has a notion of distance, while a topological space only has a notion of closeness</b>
 </ul>
 
+<P>With &gt; meaning <em>from general to specific</em> (more conditions):
+<ul>
+ <li>relation &gt; map &gt; function (Hawking/Ellis convention: function is a map into the reals)
+ <li>topological space &gt;  metric space
+ <li>map &gt; neighbour-preserving maps (homeomorphic)
+ <li>T0 &gt; T1 &gt; T2/Hausdorff &gt; regular &gt; T3 (jargon varies)
+</ul>
+
+
+
 <P>Properties of topological spaces are unchanged by homeomorphic maps:
 <ul>
+ <li>dimension (line versus surface)
+ <li>connectedness (one disk from two separate disks)
+ <li>compactness (no missing endpoints, and no punctures/holes)
+ <li>paracompact 
  <li>convergence
- <li>compactness
- <li>continuity
- <li>connectedness
- <li>dimension
+ <li>continuity 
 </ul>
+
 
 <P>Properties of metric spaces:
 <ul>
@@ -136,6 +151,110 @@ is finished.</em> [Not just 'rubber sheet' transformations, but cuts/identificat
 Both of these statements rank among the most important in point-set topology. Sometimes one of them is easier to use than the other, and you should 
 remember them both.</em>
 
+
+<P><b>Intuitive Pictures</b>
+
+<p>Rubber-sheet operations. Cut/move/rejoin operations.
+
+<P><em>"A manifold offers the most general setting where we can use calculus. "</em>
+
+<P><em>"Continuity is a geometric property but a set is not a geometric object so we need to transform this set into something more geometric where we may 
+can establish a notion of continuity. This is done by introducing a topology on spacetime."</em>
+
+<P><em>"A topology on a set tells you what collections of elements of the set form neighbourhoods."</em>
+
+<P><em>"Continuity of a map between 2 topological spaces can then roughly be thought of as the property of taking neighbourhoods of  A to neighbourhoods of  B."</em>
+
+<P><em>"This is why we model spacetime as a manifold, it’s the most general setting where you can talk about smooth trajectories, which is a central feature of all mechanical systems."</em>
+
+<P><em>"...paracompactness has little to do with the notion of compactness, but rather more to do with breaking up topological space entities into manageable pieces."</em>
+
+
+<P><a href='https://www.quora.com/Is-spacetime-a-manifold-with-boundary-or-without-boundary'>link</a> - <em>" If you restrict yourself to special relativity, then you may think of the metric tensor as giving you a metric on spacetime but when spacetime is curved, this point of view does not work. 
+The metric tensor actually gives you a metric on the tangent bundle, which is the set of all possible velocities at all points. So it’s actually a way of computing speeds from velocities."</em>
+
+<p>Connectedness:
+<ul>
+ <li>all in one piece
+ <li>not connected: two separate disks that don't touch or border
+</ul>
+ 
+<P>Compactness:
+<ul>
+ <li>nothing is missing
+ <li>no missing endpoints
+ <li>no punctures or holes
+ <li>not compact: a torus
+ <li>not compact: the set of rational numbers in R, since irrationals are holes in between the rationals
+ <li>not compact: the open interval (0,1), since the endpoints are missing
+ <li>compact: the closed interval [0,1]
+ <li>not compact: the real numbers without infinity on either end
+ <li>not compact: Minkowski space-time
+ <li>compact space-times violate cause-and-effect: the have closed time-like curves
+</ul>
+
+ 
+<P>Paracompact: 
+<ul>
+ <li>it's important that it implies <em>gluability</em> - you can glue together local pieces in order to make a global whole. For space-time, it implies it's globally metrisable.
+ <li><em>"paracompactness has little to do with the notion of compactness, but rather more to do with breaking up topological space entities into manageable pieces."</em> 
+ <li><em>"It really took off as a popular property when it was found that in order for all open covers to have a partition of unity subordinated to it, 
+ we need the space to be paracompact (under mild suppositions) and these were used to "glue together" local functions on manifolds (where we can use coordinate chart covers) 
+ to global ones (for integration e.g.) So thus it became a popular condition in manifold theory. For Euclidean manifolds paracompactness is equivalent to being metrisable (globally)."</em>
+ <li><em>"...one of the requirements assumed in the theory of manifolds is the requirement of paracompactness." </em>
+ <li><em>"In the presence of paracompactness some local properties are synthesized and fulfilled globally. In particular, if a paracompactum is locally metrizable, then it is metrizable..."</em>
+ <li>all metric spaces are paracompact
+ <li>all compact spaces are paracompact (but many paracompact spaces are not compact, including space-time)
+ <li>Minkowski space is paracompact, but not compact (infinity is missing)
+ <li>paracompact &gt; partitions of unity &gt; glue local things together &gt; globally metrisable
+</ul>
+
+
+<p>Manifold:
+<ul>
+ <li><em>"an n-dimensional manifold is a set that has the local differential structure of R<sup>n</sup> but not necessarily its global properties."</em> (Wald)
+ <li>linear in the limit, but in general not linear in the large
+ <li>something on which you can do calculus (differentiate and integrate)
+</ul>
+
+
+<p>Tangent space:
+<ul>
+ <li>generalizes tangent lines on curves, and tangent planes on surfaces
+ <li>lies "outside" the manifold (correct?)
+ <li>is attached to a given point in a manifold
+ <li>in physics, its the space of possible velocities at a given point
+ <li>has the same dimension as the manifold
+ <li>you can glue together all the tangent spaces to form a tangent bundle (having twice the dimension)
+ <li>at each point in the manifold, pick a vector from the tangent space, and do it smoothly: vector field
+</ul>
+
+
+
+<P><b>Progression from basic sets to smooth trajectories</b>
+<P>The idea is to impose structure on basic sets, in baby steps, until you can do calculus.
+You might think of this as a trip towards <em>local linearity and smoothness</em>.
+Classical physics is compeletely smooth: continuous/no jumps at all levels.
+<ul>
+ <li>start with a bag/set with no other structure: a bag of space-time events
+ <li>who's my neighbour?: impose a topology (open/closed sets) on space-time
+ <li>input-output machines: maps between bags
+ <li>neighbours-in, neighbours-out: continuous maps, continuous histories in space-time (level zero)
+ <li>neighbours-in, R<sup>n</sup> out: manifolds, where you can finally do calculus, rates of change and integration (all the other levels)
+ <li>Riemannian metric
+ <li>classical physics requires continuous velocity, acceleration, and so on, to all levels: require smooth histories, with all derivatives continuous
+ <li>linear in the local limit, but in general not linear in the large
+</ul>
+
+
+<P><b>Properties of almost all space-times:</b>
+<ul>
+ <li>topology: <em>gluable/paracompact</em>, simply because it's a metric space
+ <li>topology: <em>Hausdorff separation</em>, simply because it's a metric space
+ <li>topology: <em>connected</em>, since we would have no cause-effect interaction with a disconnected piece
+ <li>topology: <em>not compact</em>, since it has singularities/holes, doesn't include infinities, and doesn't violate cause-and-effect (closed timelike curves)
+ <li>almost always <em>globally hyperbolic</em> (initial value problems are well posed, without further boundary conditions)
+</ul>
 
 <P>A breakdown of the logical hierarchy (with synonyms in square brackets), doubles as a table of contents for these notes:
 <P><b>Sets</b>
@@ -232,7 +351,7 @@ remember them both.</em>
      <li>using open sets
      <li>using closed sets
      <li>using a basis in Y
-     <li>using a closures
+     <li>using closures
     </ul>
   <li>homeomorphism
     <ul><li>topological invariant</ul>
@@ -899,7 +1018,7 @@ It's defined like this:
  <li>m is a one-to-one correspondence (bijective), and thus has an inverse m<sup>-1</sup>
  <li>m and m<sup>-1</sup> are both continuous
 </ul>
-(Some authors drop the <em>onto</em> requirement.)
+(Some authors drop the <em>onto</em> requirement. When that is done, some authors called that an <em>embedding</em> instead of a homeomorphism.)
 
 <P>If a homeomorphism exists between X and Y, then the two topological spaces are <b>homeomorphic</b>, and we write X ≃ Y.
 
